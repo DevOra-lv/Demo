@@ -4,7 +4,7 @@ import PreviousWork from "./components/sections/PreviousWork/PreviousWork";
 import ContactSection from "./components/sections/ContanctSection/ContactSection";
 export default function Alain() {
     return (
-        <div className="relative min-h-screen bg-black text-white overflow-hidden">
+        <div className="relative min-h-screen bg-black text-white">
             <Navbar />
 
             {/* Hero Section */}

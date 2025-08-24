@@ -2,23 +2,47 @@ import { useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
 export default function PreviousWork() {
-    const images = [
-        "https://images.unsplash.com/photo-1524781289445-ddf8f5695861?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-        "https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
-        "https://images.unsplash.com/photo-1618202133208-2907bebba9e1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-        "https://images.unsplash.com/photo-1495805442109-bf1cf975750b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-        "https://images.unsplash.com/photo-1548021682-1720ed403a5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-        "https://images.unsplash.com/photo-1496753480864-3e588e0269b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2134&q=80",
-        "https://images.unsplash.com/photo-1613346945084-35cccc812dd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1759&q=80",
-        "https://images.unsplash.com/photo-1516681100942-77d8e7f9dd97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+    const works = [
+        {
+            title: "Work 1",
+            image: "https://images.unsplash.com/photo-1524781289445-ddf8f5695861?auto=format&fit=crop&w=1770&q=80",
+        },
+        {
+            title: "Work 2",
+            image: "https://images.unsplash.com/photo-1610194352361-4c81a6a8967e?auto=format&fit=crop&w=1674&q=80",
+        },
+        {
+            title: "Work 3",
+            image: "https://images.unsplash.com/photo-1618202133208-2907bebba9e1?auto=format&fit=crop&w=1770&q=80",
+        },
+        {
+            title: "Work 4",
+            image: "https://images.unsplash.com/photo-1495805442109-bf1cf975750b?auto=format&fit=crop&w=1770&q=80",
+        },
+        {
+            title: "Work 5",
+            image: "https://images.unsplash.com/photo-1548021682-1720ed403a5b?auto=format&fit=crop&w=1770&q=80",
+        },
+        {
+            title: "Work 6",
+            image: "https://images.unsplash.com/photo-1496753480864-3e588e0269b3?auto=format&fit=crop&w=2134&q=80",
+        },
+        {
+            title: "Work 7",
+            image: "https://images.unsplash.com/photo-1613346945084-35cccc812dd5?auto=format&fit=crop&w=1759&q=80",
+        },
+        {
+            title: "Work 8",
+            image: "https://images.unsplash.com/photo-1516681100942-77d8e7f9dd97?auto=format&fit=crop&w=1770&q=80",
+        },
     ];
 
     const [percentage, setPercentage] = useState(0);
 
     // Each step moves by 12.5% (100 / 8 images)
-    const stepSize = 100 / images.length;
+    const stepSize = 100 / works.length;
     const maxPercentage = 0;
-    const minPercentage = -200;
+    const minPercentage = -(works.length - 2) * stepSize;
 
     const handlePrev = () => {
         setPercentage((prev) => Math.min(prev + stepSize, maxPercentage));
@@ -44,7 +68,7 @@ export default function PreviousWork() {
                         transform: `translate(${percentage}%, -50%)`,
                     }}
                 >
-                    {images.map((src, index) => (
+                    {/* {images.map((src, index) => (
                         <img
                             key={index}
                             src={src}
@@ -52,9 +76,34 @@ export default function PreviousWork() {
                             draggable={false}
                             className="w-[40vmin] h-[56vmin] object-cover transition-all duration-[1200ms] ease-out"
                             style={{
-                                objectPosition: `${100 + percentage}% center`,
+                                objectPosition: `${Math.max(
+                                    0,
+                                    Math.min(100, 100 + percentage)
+                                )}% center`,
                             }}
                         />
+                    ))} */}
+                    {works.map((work, index) => (
+                        <div
+                            key={index}
+                            className="relative w-[40vmin] h-[56vmin] rounded-xl overflow-hidden shadow-lg flex items-end justify-center transition-all duration-[1200ms] ease-out"
+                            style={{
+                                backgroundImage: `url(${work.image})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: `${Math.max(
+                                    0,
+                                    Math.min(100, 100 + percentage)
+                                )}% center`,
+                            }}
+                        >
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                            {/* Title */}
+                            <h2 className="relative text-white text-xl md:text-2xl font-bold p-4 text-center">
+                                {work.title}
+                            </h2>
+                        </div>
                     ))}
                 </div>
 
