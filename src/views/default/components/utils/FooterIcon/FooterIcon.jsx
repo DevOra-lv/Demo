@@ -2,7 +2,7 @@ export default function FooterIcon({
     ariaLabel,
     className = "",
     href,
-    icon: Icon,   
+    icon: Icon,
     ...props
 }) {
     const baseClasses = "text-gray-500 hover:text-white";
