@@ -4,6 +4,7 @@ export default function Home() {
     const items = [
         { title: "Default", path: "/default" },
         { title: "Alain", path: "/alain" },
+        { title: "Alain2", path: "/alain2" },
     ];
     return (
         <div className="mx-auto w-3xl p-6">
